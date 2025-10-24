@@ -40,14 +40,12 @@ export default function ProductCard({
       </figure>
 
       <div className="card-body">
-        <h2 className="card-title">Product Name</h2>
-        <p>{name}</p>
-        <h2 className="card-title">Product Description</h2>
+        <h2 className="card-title text-2xl">{name}</h2>
         <p>{description}</p>
-        <h2 className="card-title">Price</h2>
         <p>${price}</p>
         <div className="card-actions justify-end">
-          <Link to="/editpage" className="btn btn-primary">
+          {/* ✅ Updated Edit button to include product id */}
+          <Link to={`/editpage/${id}`} className="btn btn-primary">
             Edit
           </Link>
           <Link

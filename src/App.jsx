@@ -10,7 +10,6 @@ import { ViewProduct } from "./Pages/ViewProduct"; // ✅ make sure this import 
 export default function App() {
   const [products, setProducts] = useState([]);
 
-  // Fetch products from backend
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://localhost:8080/products");
@@ -42,8 +41,8 @@ export default function App() {
                     description={product.description}
                     price={product.price}
                     imageUrl={product.imageUrl}
-                    id={product.id} // pass ID
-                    setProducts={setProducts} // pass setter
+                    id={product.id}
+                    setProducts={setProducts}
                     products={products}
                   />
                 ))}
@@ -58,7 +57,12 @@ export default function App() {
           />
 
           {/* Edit page */}
-          <Route path="/editpage" element={<EditProduct />} />
+          <Route
+            path="/editpage/:id"
+            element={
+              <EditProduct products={products} fetchProducts={fetchProducts} />
+            }
+          />
 
           {/* ✅ FIXED: View page route */}
           <Route

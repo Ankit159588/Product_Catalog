@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom"
 export const ViewProduct = ({ products }) => {
   const { id } = useParams(); // get id from URL
 
-  // Find the product with this id
+
   const product = products.find((p) => p.id.toString() === id);
 
   if (!product) {
