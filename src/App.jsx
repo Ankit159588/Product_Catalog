@@ -5,6 +5,7 @@ import ProductCard from "./Components/ProductCard";
 import EditProduct from "./Pages/EditProduct";
 import AddProduct from "./Pages/AddProduct";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ViewProduct } from "./Pages/ViewProduct"; // ✅ make sure this import is added
 
 export default function App() {
   const [products, setProducts] = useState([]);
@@ -27,18 +28,18 @@ export default function App() {
     <Router>
       <NavBar />
 
-      <div className="pt-24 ml-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+      <div>
         <Routes>
           {/* Home page */}
           <Route
             path="/"
             element={
-              <>
+              <div className="pt-24 ml-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
                 {products.map((product) => (
                   <ProductCard
                     key={product.id}
                     name={product.name}
-                    description ={product.description}
+                    description={product.description}
                     price={product.price}
                     imageUrl={product.imageUrl}
                     id={product.id} // pass ID
@@ -46,7 +47,7 @@ export default function App() {
                     products={products}
                   />
                 ))}
-              </>
+              </div>
             }
           />
 
@@ -58,7 +59,12 @@ export default function App() {
 
           {/* Edit page */}
           <Route path="/editpage" element={<EditProduct />} />
-          {/* <Route path="/viewpage" element={<ViewProduct />} /> */}
+
+          {/* ✅ FIXED: View page route */}
+          <Route
+            path="/viewpage/:id"
+            element={<ViewProduct products={products} />}
+          />
         </Routes>
       </div>
     </Router>

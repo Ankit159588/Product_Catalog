@@ -51,7 +51,7 @@ export default function ProductCard({
             Edit
           </Link>
           <Link
-            to="/viewpage"
+            to={`/viewpage/${id}`}
             className="btn bg-green-800 text-white hover:bg-green-900"
           >
             View
